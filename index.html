@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>오늘 뭐 마셔? | 부경대 카페 최저가 비교</title>
+    <meta
+      name="description"
+      content="부경대학교 주변 카페의 음료 가격을 비교하고 최저가 카페를 빠르게 찾는 웹 앱"
+    >
+    <link rel="stylesheet" href="styles.css">
+    <script src="firebase-config.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <button class="brand-button" type="button" data-action="home" aria-label="메인으로 이동">
+          <span class="brand-mark" aria-hidden="true">
+            <span class="cup-body"></span>
+            <span class="cup-handle"></span>
+          </span>
+          <span>
+            <strong>오늘 뭐 마셔?</strong>
+            <small>부경대 주변 카페 최저가 비교</small>
+          </span>
+        </button>
+
+        <nav class="top-actions" aria-label="주요 메뉴">
+          <button class="icon-text-button" type="button" data-action="open-report">
+            <span aria-hidden="true">!</span>
+            가격 제보
+          </button>
+          <button class="icon-text-button" type="button" data-action="open-admin">
+            <span aria-hidden="true">*</span>
+            관리자
+          </button>
+        </nav>
+      </header>
+
+      <main>
+        <section class="intro-band" aria-labelledby="mainTitle">
+          <div class="intro-copy">
+            <p class="eyebrow">부경대학교 대연캠퍼스 주변</p>
+            <h1 id="mainTitle">오늘 뭐 마셔?</h1>
+            <p class="lead">먹고 싶은 음료를 선택하면 학교 주변 최저가 카페를 알려드립니다.</p>
+          </div>
+          <div class="status-strip" id="statusStrip" aria-live="polite"></div>
+        </section>
+
+        <section class="finder-layout" aria-label="음료 최저가 검색">
+          <div class="selector-section">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">음료 선택</p>
+                <h2>카테고리에서 바로 고르기</h2>
+              </div>
+              <label class="search-field">
+                <span class="sr-only">음료 검색</span>
+                <input id="drinkSearch" type="search" placeholder="음료명 검색">
+              </label>
+            </div>
+            <div class="tab-list" id="categoryTabs" role="tablist" aria-label="음료 카테고리"></div>
+            <div class="drink-grid" id="drinkGrid"></div>
+          </div>
+
+          <div class="ranking-section" aria-live="polite">
+            <div class="ranking-header" id="rankingHeader"></div>
+            <div class="ranking-list" id="rankingList"></div>
+          </div>
+        </section>
+
+        <section class="detail-section hidden" id="detailSection" aria-live="polite"></section>
+
+        <section class="report-section hidden" id="reportSection" aria-labelledby="reportTitle">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">사용자 제보</p>
+              <h2 id="reportTitle">가격 수정 제보</h2>
+            </div>
+            <button class="plain-button" type="button" data-action="close-report">닫기</button>
+          </div>
+          <form class="form-grid" id="reportForm">
+            <label>
+              카페
+              <select id="reportCafe" required></select>
+            </label>
+            <label>
+              음료
+              <select id="reportDrink" required></select>
+            </label>
+            <label>
+              현재 등록 가격
+              <input id="reportCurrentPrice" type="text" readonly>
+            </label>
+            <label>
+              새로운 가격
+              <input id="reportNewPrice" type="number" min="0" max="20000" step="100" required>
+            </label>
+            <label class="wide-field">
+              제보 내용
+              <textarea id="reportNote" rows="4" maxlength="500" placeholder="메뉴판 확인, 영수증 기준 등"></textarea>
+            </label>
+            <label>
+              제보자 표시 이름
+              <input id="reporterName" type="text" maxlength="40" placeholder="선택 입력">
+            </label>
+            <div class="form-actions">
+              <button class="primary-button" type="submit">제보 제출</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="admin-section hidden" id="adminSection" aria-labelledby="adminTitle">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">관리자</p>
+              <h2 id="adminTitle">카페와 가격 관리</h2>
+            </div>
+            <button class="plain-button" type="button" data-action="close-admin">닫기</button>
+          </div>
+
+          <form class="login-panel" id="adminLoginForm">
+            <label>
+              관리자 이메일
+              <input id="adminEmail" type="email" autocomplete="username" required>
+            </label>
+            <label>
+              비밀번호
+              <input id="adminPassword" type="password" autocomplete="current-password" required>
+            </label>
+            <button class="primary-button" type="submit">로그인</button>
+            <p class="helper-text">Firebase Authentication의 이메일/비밀번호 계정과 Realtime Database의 admins 권한을 사용합니다.</p>
+          </form>
+
+          <div class="admin-dashboard hidden" id="adminDashboard">
+            <div class="admin-toolbar">
+              <div id="adminUserLabel"></div>
+              <button class="plain-button" type="button" data-action="admin-logout">로그아웃</button>
+            </div>
+
+            <div class="tab-list compact-tabs" role="tablist" aria-label="관리자 기능">
+              <button class="tab-button active" type="button" data-admin-tab="cafes">카페 관리</button>
+              <button class="tab-button" type="button" data-admin-tab="reports">제보 확인</button>
+            </div>
+
+            <div class="admin-pane" id="adminCafePane">
+              <div class="admin-grid">
+                <div class="admin-list">
+                  <div class="admin-list-head">
+                    <strong>등록 카페</strong>
+                    <button class="small-button" type="button" data-action="new-cafe">새 카페</button>
+                  </div>
+                  <div id="adminCafeList"></div>
+                </div>
+
+                <form class="editor-form" id="cafeForm">
+                  <input id="editingCafeId" type="hidden">
+                  <label>
+                    카페명
+                    <input id="cafeName" type="text" maxlength="60" required>
+                  </label>
+                  <label>
+                    위치 구역
+                    <input id="cafeArea" type="text" maxlength="80" placeholder="정문 근처">
+                  </label>
+                  <label class="wide-field">
+                    상세 위치
+                    <input id="cafeLocation" type="text" maxlength="160" placeholder="학교 정문 골목">
+                  </label>
+                  <label>
+                    거리 표시
+                    <input id="cafeDistanceText" type="text" maxlength="40" placeholder="정문 도보 3분" required>
+                  </label>
+                  <label>
+                    거리 분
+                    <input id="cafeDistanceMinutes" type="number" min="0" max="60" step="1" required>
+                  </label>
+                  <label>
+                    영업시간
+                    <input id="cafeHours" type="text" maxlength="80" placeholder="08:00-22:00">
+                  </label>
+                  <label>
+                    최근 수정일
+                    <input id="cafeUpdatedAt" type="date" required>
+                  </label>
+                  <label class="wide-field">
+                    특징
+                    <input id="cafeFeatures" type="text" maxlength="160" placeholder="대용량, 테이크아웃 가능">
+                  </label>
+
+                  <div class="menu-editor wide-field">
+                    <div class="menu-editor-head">
+                      <strong>메뉴 가격</strong>
+                      <button class="small-button" type="button" data-action="add-menu-row">메뉴 추가</button>
+                    </div>
+                    <div id="menuRows"></div>
+                  </div>
+
+                  <div class="form-actions wide-field">
+                    <button class="danger-button" type="button" data-action="delete-cafe">카페 삭제</button>
+                    <button class="primary-button" type="submit">저장</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div class="admin-pane hidden" id="adminReportPane">
+              <div class="report-admin-list" id="adminReportList"></div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

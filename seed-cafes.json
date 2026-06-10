@@ -1,0 +1,104 @@
+{
+  "mega_coffee": {
+    "name": "메가커피",
+    "location": "부경대 정문 근처",
+    "distanceText": "부경대 정문 기준 도보 3분",
+    "distanceMeters": 240,
+    "hours": "08:00-22:00",
+    "tags": ["대용량", "테이크아웃 가능"],
+    "updatedAt": "2026-06-10",
+    "menus": {
+      "ice_americano": { "name": "아이스 아메리카노", "category": "커피", "price": 2000, "updatedAt": "2026-06-10" },
+      "cafe_latte": { "name": "카페라떼", "category": "라떼", "price": 3200, "updatedAt": "2026-06-10" },
+      "vanilla_latte": { "name": "바닐라라떼", "category": "라떼", "price": 3700, "updatedAt": "2026-06-10" },
+      "grapefruit_ade": { "name": "자몽에이드", "category": "에이드", "price": 3900, "updatedAt": "2026-06-10" },
+      "lemon_ade": { "name": "레몬에이드", "category": "에이드", "price": 3900, "updatedAt": "2026-06-10" },
+      "chocolate_latte": { "name": "초코라떼", "category": "라떼", "price": 3500, "updatedAt": "2026-06-10" }
+    }
+  },
+  "compose_coffee": {
+    "name": "컴포즈커피",
+    "location": "부경대 후문 근처",
+    "distanceText": "부경대 후문 기준 도보 5분",
+    "distanceMeters": 400,
+    "hours": "08:00-22:30",
+    "tags": ["가격 저렴", "메뉴 다양"],
+    "updatedAt": "2026-06-10",
+    "menus": {
+      "ice_americano": { "name": "아이스 아메리카노", "category": "커피", "price": 1800, "updatedAt": "2026-06-10" },
+      "cafe_latte": { "name": "카페라떼", "category": "라떼", "price": 3000, "updatedAt": "2026-06-10" },
+      "vanilla_latte": { "name": "바닐라라떼", "category": "라떼", "price": 3500, "updatedAt": "2026-06-10" },
+      "lemon_ade": { "name": "레몬에이드", "category": "에이드", "price": 3800, "updatedAt": "2026-06-10" },
+      "peach_iced_tea": { "name": "복숭아 아이스티", "category": "아이스티", "price": 2500, "updatedAt": "2026-06-10" },
+      "strawberry_smoothie": { "name": "딸기스무디", "category": "스무디", "price": 4300, "updatedAt": "2026-06-10" }
+    }
+  },
+  "front_alley_cafe": {
+    "name": "학교 앞 개인카페",
+    "location": "부경대 정문 골목",
+    "distanceText": "부경대 정문 기준 도보 2분",
+    "distanceMeters": 160,
+    "hours": "09:00-21:00",
+    "tags": ["조용함", "공부 가능"],
+    "updatedAt": "2026-06-10",
+    "menus": {
+      "ice_americano": { "name": "아이스 아메리카노", "category": "커피", "price": 1500, "updatedAt": "2026-06-10" },
+      "cafe_latte": { "name": "카페라떼", "category": "라떼", "price": 3500, "updatedAt": "2026-06-10" },
+      "peach_iced_tea": { "name": "복숭아 아이스티", "category": "아이스티", "price": 2800, "updatedAt": "2026-06-10" },
+      "grapefruit_ade": { "name": "자몽에이드", "category": "에이드", "price": 4000, "updatedAt": "2026-06-10" },
+      "chocolate_latte": { "name": "초코라떼", "category": "라떼", "price": 3300, "updatedAt": "2026-06-10" },
+      "strawberry_smoothie": { "name": "딸기스무디", "category": "스무디", "price": 4600, "updatedAt": "2026-06-10" }
+    }
+  },
+  "station_cafe": {
+    "name": "역 앞 개인카페",
+    "location": "경성대·부경대역 3번 출구 주변",
+    "distanceText": "경성대·부경대역 기준 도보 3분",
+    "distanceMeters": 650,
+    "hours": "10:00-23:00",
+    "tags": ["좌석 많음", "늦게까지 운영"],
+    "updatedAt": "2026-06-10",
+    "menus": {
+      "ice_americano": { "name": "아이스 아메리카노", "category": "커피", "price": 2500, "updatedAt": "2026-06-10" },
+      "cafe_latte": { "name": "카페라떼", "category": "라떼", "price": 3600, "updatedAt": "2026-06-10" },
+      "vanilla_latte": { "name": "바닐라라떼", "category": "라떼", "price": 3800, "updatedAt": "2026-06-10" },
+      "grapefruit_ade": { "name": "자몽에이드", "category": "에이드", "price": 4500, "updatedAt": "2026-06-10" },
+      "lemon_ade": { "name": "레몬에이드", "category": "에이드", "price": 4200, "updatedAt": "2026-06-10" },
+      "strawberry_smoothie": { "name": "딸기스무디", "category": "스무디", "price": 4800, "updatedAt": "2026-06-10" }
+    }
+  },
+  "side_gate_takeout": {
+    "name": "쪽문 테이크아웃",
+    "location": "부경대 쪽문 버스정류장 주변",
+    "distanceText": "부경대 쪽문 기준 도보 1분",
+    "distanceMeters": 90,
+    "hours": "07:30-20:00",
+    "tags": ["빠른 주문", "테이크아웃 전문"],
+    "updatedAt": "2026-06-10",
+    "menus": {
+      "ice_americano": { "name": "아이스 아메리카노", "category": "커피", "price": 1700, "updatedAt": "2026-06-10" },
+      "cafe_latte": { "name": "카페라떼", "category": "라떼", "price": 3300, "updatedAt": "2026-06-10" },
+      "vanilla_latte": { "name": "바닐라라떼", "category": "라떼", "price": 3600, "updatedAt": "2026-06-10" },
+      "peach_iced_tea": { "name": "복숭아 아이스티", "category": "아이스티", "price": 2700, "updatedAt": "2026-06-10" },
+      "chocolate_latte": { "name": "초코라떼", "category": "라떼", "price": 3200, "updatedAt": "2026-06-10" },
+      "lemon_ade": { "name": "레몬에이드", "category": "에이드", "price": 3500, "updatedAt": "2026-06-10" }
+    }
+  },
+  "library_lounge": {
+    "name": "도서관 라운지카페",
+    "location": "부경대 대연캠퍼스 도서관 방향",
+    "distanceText": "부경대 정문 기준 도보 7분",
+    "distanceMeters": 520,
+    "hours": "09:00-19:00",
+    "tags": ["학내 이동 편함", "간단한 디저트"],
+    "updatedAt": "2026-06-10",
+    "menus": {
+      "ice_americano": { "name": "아이스 아메리카노", "category": "커피", "price": 2200, "updatedAt": "2026-06-10" },
+      "cafe_latte": { "name": "카페라떼", "category": "라떼", "price": 3100, "updatedAt": "2026-06-10" },
+      "peach_iced_tea": { "name": "복숭아 아이스티", "category": "아이스티", "price": 3000, "updatedAt": "2026-06-10" },
+      "grapefruit_ade": { "name": "자몽에이드", "category": "에이드", "price": 4100, "updatedAt": "2026-06-10" },
+      "strawberry_smoothie": { "name": "딸기스무디", "category": "스무디", "price": 4500, "updatedAt": "2026-06-10" },
+      "chocolate_latte": { "name": "초코라떼", "category": "라떼", "price": 3400, "updatedAt": "2026-06-10" }
+    }
+  }
+}
